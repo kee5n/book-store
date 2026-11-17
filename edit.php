@@ -36,98 +36,173 @@ $allAuthors = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="et">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title><?= $book['title'] ?></title>
+    <title><?= htmlspecialchars($book['title']) ?> – Muuda raamatut</title>
 </head>
 <body>
-    <h1><?= $book['title'] ?></h1>
 
-    <form  action="update.php" method="POST">
+<header class="site-header">
+    <a href="index.php" class="logo">Raamatu pood</a>
+    <nav>
+        <a href="index.php">Raamatud</a>
+    </nav>
+</header>
 
-        <input type="hidden" name="id" value="<?= $book['id'] ?>">
+<main class="edit-page">
 
-        <div>
-            <p>Pealkiri</p>
-            <input type="text" name="title" value="<?= htmlspecialchars($book['title']) ?>">
-        </div>
+    <a href="book.php?id=<?= $book['id'] ?>" class="back-link">
+        ← Tagasi raamatu juurde
+    </a>
 
-        <div>
-            <p>Hind</p>
-            <input type="text" name="price" value="<?= number_format($book['price'], 2) ?>">
-        </div>
+    <section class="edit-card">
+        <p class="eyebrow">Raamatupood</p>
+        <h1>Muuda raamatut</h1>
+        <p class="edit-description">
+            Muuda raamatu andmeid ja halda selle autoreid.
+        </p>
 
-        <div>
-            <p>Kokkuvõte</p>
-            <input type="text" name="summary" value="<?= $book['summary'] ?>">
-        </div>
+        <form action="update.php" method="POST" class="edit-form">
+            <input type="hidden" name="id" value="<?= $book['id'] ?>">
 
-        <div>
-            <p>Lehekülgede arv</p>
-            <input type="text" name="pages" value="<?= $book['pages'] ?>">
-        </div>
+            <div class="form-group">
+                <label for="title">Pealkiri</label>
+                <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value="<?= htmlspecialchars($book['title']) ?>"
+                    required
+                >
+            </div>
 
-        <div>
-            <p>Lao seis</p>
-            <input type="text" name="stock_saldo" value="<?= $book['stock_saldo'] ?>">
-        </div>
+            <div class="form-group">
+                <label for="price">Hind (€)</label>
+                <input
+                    type="text"
+                    id="price"
+                    name="price"
+                    min="0"
+                    step="0.01"
+                    value="<?= htmlspecialchars((string)$book['price']) ?>"
+                    required
+                >
+            </div>
 
-        <button class="btn-primary" type="submit">Salvesta</button>
+            <div class="form-group">
+                <label for="summary">Kokkuvõte</label>
+                <textarea
+                    id="summary"
+                    name="summary"
+                    rows="5"
+                ><?= htmlspecialchars($book['summary'] ?? '') ?></textarea>
+            </div>
 
-    </form>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pages">Lehekülgede arv</label>
+                    <input
+                        type="text"
+                        id="pages"
+                        name="pages"
+                        min="0"
+                        value="<?= $book['pages'] ?>"
+                    >
+                </div>
 
+                <div class="form-group">
+                    <label for="stock_saldo">Lao seis</label>
+                    <input
+                        type="text"
+                        id="stock_saldo"
+                        name="stock_saldo"
+                        min="0"
+                        value="<?= $book['stock_saldo'] ?>"
+                    >
+                </div>
+            </div>
 
-    <h2>Raamatu autorid</h2>
-
-<?php foreach ($authors as $author): ?>
-    <div>
-        <?= htmlspecialchars($author['first_name'] . ' ' . $author['last_name']) ?>
-
-        <form action="remove_author.php" method="POST">
-            <input type="hidden" name="book_id" value="<?= $book['id'] ?>">
-            <input type="hidden" name="author_id" value="<?= $author['id'] ?>">
-            <button type="submit">Eemalda autor</button>
+            <button class="btn btn-primary" type="submit">
+                Salvesta muudatused
+            </button>
         </form>
-    </div>
-<?php endforeach; ?>
+    </section>
 
+    <section class="edit-card authors-card">
+        <p class="eyebrow">Autorid</p>
+        <h2>Raamatu autorid</h2>
 
-<h2>Lisa autor</h2>
+        <div class="author-list">
+            <?php foreach ($authors as $author): ?>
+                <div class="author-row">
+                    <span>
+                        <?= htmlspecialchars(
+                            $author['first_name'] . ' ' . $author['last_name']
+                        ) ?>
+                    </span>
 
-<form action="add_author.php" method="POST">
-    <input type="hidden" name="book_id" value="<?= $book['id'] ?>">
+                    <form action="remove_author.php" method="POST">
+                        <input type="hidden" name="book_id" value="<?= $book['id'] ?>">
+                        <input type="hidden" name="author_id" value="<?= $author['id'] ?>">
 
-    <select name="author_id" required>
-        <option value="">Vali autor</option>
+                        <button type="submit" class="btn btn-danger">
+                            Eemalda
+                        </button>
+                    </form>
+                </div>
+            <?php endforeach; ?>
 
-        <?php foreach ($allAuthors as $author): ?>
-            <?php
-            $alreadyAdded = false;
-
-            foreach ($authors as $bookAuthor) {
-                if ($bookAuthor['id'] == $author['id']) {
-                    $alreadyAdded = true;
-                    break;
-                }
-            }
-            ?>
-
-            <?php if (!$alreadyAdded): ?>
-                <option value="<?= $author['id'] ?>">
-                    <?= htmlspecialchars($author['first_name'] . ' ' . $author['last_name']) ?>
-                </option>
+            <?php if (empty($authors)): ?>
+                <p class="edit-description">Sellele raamatule pole veel autoreid lisatud.</p>
             <?php endif; ?>
-        <?php endforeach; ?>
-    </select>
+        </div>
 
-    <button type="submit">Lisa autor</button>
-</form>
+        <div class="add-author">
+            <h3>Lisa autor</h3>
 
+            <form action="add_author.php" method="POST" class="add-author-form">
+                <input type="hidden" name="book_id" value="<?= $book['id'] ?>">
 
+                <select name="author_id" required>
+                    <option value="">Vali autor</option>
 
+                    <?php foreach ($allAuthors as $author): ?>
+                        <?php
+                        $alreadyAdded = false;
+
+                        foreach ($authors as $bookAuthor) {
+                            if ($bookAuthor['id'] == $author['id']) {
+                                $alreadyAdded = true;
+                                break;
+                            }
+                        }
+                        ?>
+
+                        <?php if (!$alreadyAdded): ?>
+                            <option value="<?= $author['id'] ?>">
+                                <?= htmlspecialchars(
+                                    $author['first_name'] . ' ' . $author['last_name']
+                                ) ?>
+                            </option>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </select>
+
+                <button type="submit" class="btn btn-primary">
+                    Lisa autor
+                </button>
+            </form>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer">
+    Book Store
+</footer>
 
 </body>
 </html>

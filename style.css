@@ -1,8 +1,4 @@
 
-
-/* book.php */
-
-/* Üldine kujundus */
 * {
     margin: 0;
     padding: 0;
@@ -26,23 +22,21 @@ body {
 }
 
 /* Päis */
+
 .site-header {
-    min-height: 85px;
-    padding: 20px 8%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    justify-content: space-between;
+    padding: 25px 7%;
     background: var(--paper);
     border-bottom: 1px solid var(--border);
 }
 
 .logo {
-    font-size: 25px;
-    font-weight: bold;
     color: var(--brown);
+    font-size: 26px;
+    font-weight: bold;
     text-decoration: none;
-    letter-spacing: -0.5px;
 }
 
 .site-header nav {
@@ -51,123 +45,107 @@ body {
 }
 
 .site-header nav a {
-    color: var(--muted);
-    text-decoration: none;
-    font-family: Arial, sans-serif;
+    color: var(--brown);
     font-size: 14px;
-    transition: color 0.2s;
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 .site-header nav a:hover {
     color: var(--gold);
 }
 
-/* Lehe põhiosa */
+/* Raamatu leht */
+
 .book-page {
-    max-width: 1150px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 45px 25px 60px;
+    padding: 45px 25px;
 }
 
 .back-link {
     display: inline-block;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
     color: var(--muted);
-    text-decoration: none;
-    font-family: Arial, sans-serif;
     font-size: 14px;
+    text-decoration: none;
 }
 
 .back-link:hover {
     color: var(--gold);
 }
 
+/* Raamatu detailid */
+
 .book-details {
     display: grid;
     grid-template-columns: 0.8fr 1.2fr;
     gap: 75px;
     align-items: start;
+    padding: 45px;
     background: var(--paper);
-    padding: 55px;
     border: 1px solid var(--border);
-    border-radius: 8px;
-    box-shadow: 0 15px 45px rgba(56, 41, 31, 0.05);
+    border-radius: 5px;
 }
 
-/* Raamatu kaas */
-
-.cover-placeholder {
-    padding: 30px;
+.book-visual {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #f8f0dc;
-    background: linear-gradient(145deg, #66513a, #30251d);
-    border: 7px double #c5a36e;
+    align-items: flex-start;
 }
 
-.cover-decoration {
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-    letter-spacing: 5px;
-    margin-bottom: 30px;
-    color: #d9bd88;
+.book-visual img {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 3px;
+    box-shadow: 0 10px 25px rgba(56, 41, 31, 0.12);
 }
 
-.cover-placeholder h2 {
-    font-size: clamp(20px, 3vw, 30px);
-    line-height: 1.3;
-    overflow-wrap: anywhere;
-}
-
-.cover-placeholder p {
-    margin-top: 25px;
-    color: #d9bd88;
-    font-size: 14px;
-}
-
-/* Raamatu info */
 .book-info {
     padding-top: 10px;
 }
 
 .eyebrow {
+    margin-bottom: 12px;
     color: var(--gold);
     font-family: Arial, sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
     letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .book-info h1 {
-    margin-top: 15px;
-    font-size: clamp(32px, 4vw, 46px);
+    margin-bottom: 12px;
+    color: var(--brown);
+    font-size: 42px;
     line-height: 1.2;
-    font-weight: normal;
-    overflow-wrap: anywhere;
 }
 
 .author {
-    margin-top: 15px;
+    margin-bottom: 20px;
     color: var(--muted);
     font-size: 16px;
 }
 
 .price {
-    margin-top: 25px;
-    color: #8c6337;
-    font-size: 32px;
+    margin-bottom: 25px;
+    color: var(--gold);
+    font-size: 30px;
     font-weight: bold;
 }
 
-/* Raamatu omadused */
+/* Raamatu lisainfo */
+
 .book-meta {
     display: flex;
-    gap: 45px;
-    margin-top: 25px;
-    padding: 20px 0;
+    flex-wrap: wrap;
+    gap: 25px 45px;
+    padding: 22px 0;
+    margin-bottom: 25px;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
 }
@@ -180,33 +158,37 @@ body {
 .meta-label {
     color: var(--muted);
     font-family: Arial, sans-serif;
-    font-size: 10px;
-    letter-spacing: 1.5px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .meta-item strong {
-    margin-top: 5px;
-    font-size: 18px;
+    color: var(--brown);
+    font-size: 15px;
+    font-weight: normal;
 }
 
-/* Kokkuvõte */
+/* Raamatu kirjeldus */
+
 .summary {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .summary h2 {
-    font-size: 23px;
-    font-weight: normal;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+    color: var(--brown);
+    font-size: 22px;
 }
 
 .summary p {
-    color: #6d6258;
-    font-size: 16px;
-    overflow-wrap: anywhere;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.8;
 }
 
 /* Nupud */
+
 .book-actions {
     display: flex;
     flex-wrap: wrap;
@@ -219,64 +201,371 @@ body {
     align-items: center;
     justify-content: center;
     padding: 13px 20px;
+    border: 1px solid transparent;
     border-radius: 4px;
-    text-decoration: none;
     font-family: Arial, sans-serif;
     font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
     transition: all 0.2s ease;
 }
 
 .btn-primary {
     color: white;
     background: var(--brown);
-    border: 1px solid var(--brown);
+    border-color: var(--brown);
 }
 
 .btn-primary:hover {
-    background: #594333;
+    color: white;
+    background: var(--gold);
+    border-color: var(--gold);
     transform: translateY(-2px);
 }
 
 .btn-secondary {
     color: var(--brown);
-    border: 1px solid var(--border);
     background: transparent;
+    border-color: var(--border);
 }
 
 .btn-secondary:hover {
     background: var(--cream);
+    border-color: var(--gold);
+    transform: translateY(-2px);
 }
 
-/* Alumine sõnum */
+/* Kustutamise nupp */
+
+.btn-danger {
+    color: #8b3d32;
+    background: transparent;
+    border-color: #d8b7ad;
+}
+
+.btn-danger:hover {
+    color: white;
+    background: #8b3d32;
+    border-color: #8b3d32;
+    transform: translateY(-2px);
+}
+
+/* Teated */
+
+.alert-success {
+    padding: 12px 16px;
+    margin: 15px 0;
+    color: #42583b;
+    background: #e8efe2;
+    border: 1px solid #d1ddc8;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Alumine märkus */
+
 .bottom-note {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    margin-top: 45px;
+    margin-top: 30px;
     color: var(--muted);
-    text-align: center;
+    font-size: 13px;
     font-style: italic;
+    text-align: center;
 }
 
-.bottom-note span {
-    font-size: 24px;
-}
+/* Jalus */
 
 .site-footer {
     padding: 25px;
-    border-top: 1px solid var(--border);
+    margin-top: 50px;
     color: var(--muted);
+    background: var(--paper);
+    border-top: 1px solid var(--border);
+    font-size: 13px;
     text-align: center;
+}
+
+
+/* Raamatu muutmise leht */
+
+.edit-page {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 40px 25px 70px;
+}
+
+.edit-card {
+    padding: 35px;
+    margin-bottom: 30px;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+}
+
+.edit-card h1 {
+    margin-bottom: 8px;
+    font-size: 34px;
+    line-height: 1.3;
+}
+
+.edit-card h2 {
+    margin-bottom: 20px;
+    font-size: 25px;
+}
+
+.edit-description {
+    margin-bottom: 25px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    color: var(--brown);
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.add-author-form select {
+    width: 100%;
+    padding: 12px 14px;
+    color: var(--brown);
+    background: #fffefa;
+    border: 1px solid var(--border);
+    border-radius: 4px;
     font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.add-author-form select:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(179, 139, 85, 0.12);
+}
+
+.form-group textarea {
+    min-height: 130px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.edit-form .btn {
+    align-self: flex-start;
+    margin-top: 5px;
+}
+
+/* Autorite nimekiri */
+
+.authors-card {
+    margin-top: 30px;
+}
+
+.author-list {
+    border-top: 1px solid var(--border);
+}
+
+.author-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.author-row span {
+    font-size: 15px;
+}
+
+.author-row form {
+    flex-shrink: 0;
+}
+
+.author-row .btn {
+    padding: 8px 13px;
     font-size: 12px;
 }
 
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 12px 16px;
-    margin: 15px 0;
-    border: 1px solid #c3e6cb;
-    border-radius: 5px;
+/* Autori lisamine */
+
+.add-author {
+    padding-top: 25px;
+    margin-top: 25px;
+    border-top: 1px solid var(--border);
+}
+
+.add-author h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+
+.add-author-form {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.add-author-form select {
+    flex: 1;
+    min-width: 0;
+}
+
+.add-author-form .btn {
+    flex-shrink: 0;
+}
+
+/* Raamatute otsing */
+
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 25px 0 30px;
+}
+
+.search-form input {
+    flex: 1;
+    min-width: 200px;
+    padding: 13px 15px;
+    color: var(--brown);
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-form input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(179, 139, 85, 0.12);
+}
+
+.search-form .btn {
+    align-self: stretch;
+}
+
+@media (max-width: 500px) {
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-form input {
+        width: 100%;
+    }
+
+    .search-form .btn {
+        width: 100%;
+    }
+}
+
+/* Mobiilivaade */
+
+@media (max-width: 600px) {
+    .edit-page {
+        padding: 25px 15px 45px;
+    }
+
+    .edit-card {
+        padding: 22px 18px;
+    }
+
+    .edit-card h1 {
+        font-size: 28px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .author-row {
+        align-items: flex-start;
+    }
+
+    .add-author-form {
+        flex-direction: column;
+    }
+
+    .add-author-form .btn,
+    .edit-form .btn {
+        width: 100%;
+    }
+}   
+
+/* Mobiilivaade */
+
+@media (max-width: 700px) {
+    .site-header {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .site-header nav {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .book-page {
+        padding: 25px 15px;
+    }
+
+    .book-details {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 25px 20px;
+    }
+
+    .book-visual img {
+        max-width: 100%;
+        max-height: 400px;
+    }
+
+    .book-info h1 {
+        font-size: 32px;
+    }
+
+    .price {
+        font-size: 26px;
+    }
+
+    .book-meta {
+        gap: 20px 35px;
+    }
+
+    .book-actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
 }
